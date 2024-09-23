@@ -1,57 +1,49 @@
+import java.util.Arrays;
+
 public class Main{
-	
-	// Insertion sort = after comparing elements to the left,
-	//				shift elements to the right to make room to insert a value, SO
-	
-	//				Quadratic time O(n^2)
-	//				small data set = decent
-	//				large data set = BAD
-	
-	//				Less steps than Bubble sort
-	//				Best case is O(n) compared to Selection sort O(n^2)
-	
-	public static void main(String[] args) {
-		
-		int array[] = {9, 1, 8, 2, 7, 3, 6, 5, 4};
-		
-        System.out.print(("Before Sorting: "));
-        
-		for(int i : array) {
-		    
-			System.out.print(i + " ");
-		}
-			
-			insertionSort(array);
-			
-			System.out.print(("\nAfter Sorting:  "));
-			for(int i : array) {
-			System.out.print(i + " ");
-		}
+// binary search = Search algorithm that finds the position
+//				   of a target value within a sorted array.
+//				   Half of the array is eliminated during each "step"
+
+public static void main(String[] args) {
+
+	int array[] = new int[1000000];
+	int target = 777777;
+
+	for(int i = 0; i < array.length; i++) {
+		array[i] = i;
 	}
-    
- 
-    
-    
-    
-    
-    
-    
-    
-	private static void insertionSort(int[] array) {
-		
-		for(int i = 1; i < array.length; i++) {
-			int temp = array[i]; //TEMPORARY STORING THE CURRENT INDEX
-			int j = i - 1; //GETTING THE VALUES OF THE ARRAYS TO THE LEFT OF THE CURRENT INDEX
-			
-			while(j >= 0 && array[j] > temp) { //IF THE ELEMENT ON THE LEFT IS BIGGER THAN THE CURRENT  ARRAY
-				array[j + 1] = array[j]; //SHIFT ELEMENT TO THE RIGHT
-				j--;
-				/*
-				CONTINUE SWITCHING VALUES FROM THE LEFT TO THE RIGHT UNTIL IT REACHES THE 
-				LAST ELEMENT OR AND THE VALUE TO THE LEFT IS LARGER TO THE CURRENT VALUE*/
-			} // if everything on the left is smaller, put it now on the opening
-			array[j + 1] = temp;//INSERT THE ORIGINAL ELEMENT TO THE OPENING
-		}
+
+	//int index = Arrays.binarySearch(array, target);
+	int index = binarySearch(array, target);
+
+	if(index == -1) {
+		System.out.println(target + " not found");
 	}
+	else {
+		System.out.println("Element found at: " + index);
+	}
+
+}
+
+private static int binarySearch(int[] array, int target) {
+
+	int low = 0;
+	int high = array.length - 1;
+
+	while(low <= high) {
+
+		int middle = low + (high - low) / 2;
+		int value = array[middle];
+
+		System.out.println("middle: " + value);
+
+		if(value < target) low = middle + 1;
+		else if(value > target) high = middle - 1;
+		else return middle; //target found
+	}
+
+	return -1;
+}
 }
 
