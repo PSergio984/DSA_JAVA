@@ -1,4 +1,4 @@
-public class Main{
+public class InsertionSort{
 	
 	// Insertion sort = after comparing elements to the left,
 	//				shift elements to the right to make room to insert a value, SO
@@ -28,13 +28,6 @@ public class Main{
 			System.out.print(i + " ");
 		}
 	}
-    
- 
-    
-    
-    
-    
-    
     
     
 	private static void insertionSort(int[] array) {
